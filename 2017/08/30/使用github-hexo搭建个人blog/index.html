@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      使用github+hexo搭建个人blog | HotHunter&#39;s bed 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="hothunter">
+    
+    
+
+    <meta name="description" content="前段时间服务器无奈到期, 发现可以借用github pages服务做为博客的服务器, 搞好之后在这里记录一下. 针对windows, 准备环境: node.js / git 1.准备github pagesgithub账号并配置好SSH keys 创建repository : 一定要以XXX.github.io这样的格式来命名你的repository. XXX为你的GitHub ID 2.安装he">
+<meta name="keywords" content="记录">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用github+hexo搭建个人blog | HotHunter&#39;s bed">
+<meta property="og:url" content="http://hothunter.com/2017/08/30/使用github-hexo搭建个人blog/index.html">
+<meta property="og:site_name" content="HotHunter&#39;s bed">
+<meta property="og:description" content="前段时间服务器无奈到期, 发现可以借用github pages服务做为博客的服务器, 搞好之后在这里记录一下. 针对windows, 准备环境: node.js / git 1.准备github pagesgithub账号并配置好SSH keys 创建repository : 一定要以XXX.github.io这样的格式来命名你的repository. XXX为你的GitHub ID 2.安装he">
+<meta property="og:updated_time" content="2017-08-29T17:45:05.323Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用github+hexo搭建个人blog | HotHunter&#39;s bed">
+<meta name="twitter:description" content="前段时间服务器无奈到期, 发现可以借用github pages服务做为博客的服务器, 搞好之后在这里记录一下. 针对windows, 准备环境: node.js / git 1.准备github pagesgithub账号并配置好SSH keys 创建repository : 一定要以XXX.github.io这样的格式来命名你的repository. XXX为你的GitHub ID 2.安装he">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">HotHunter&#39;s bed</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于我</a></li>
+              
+                
+                <li class="navigation__item"><a href="/lab" title="" class="">实验室</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">使用github+hexo搭建个人blog</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2017-08-30" class="post-meta__date date">2017-08-30</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/记录/">记录</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <p>前段时间服务器无奈到期, 发现可以借用github pages服务做为博客的服务器, 搞好之后在这里记录一下.</p>
+<p>针对windows, 准备环境: node.js / git</p>
+<h4 id="1-准备github-pages"><a href="#1-准备github-pages" class="headerlink" title="1.准备github pages"></a>1.准备github pages</h4><p>github账号并配置好SSH keys</p>
+<p>创建repository : 一定要以XXX.github.io这样的格式来命名你的repository. XXX为你的GitHub ID</p>
+<h4 id="2-安装hexo"><a href="#2-安装hexo" class="headerlink" title="2.安装hexo"></a>2.安装hexo</h4><p>在cmd中执行如下命令安装Hexo：</p>
+<pre><code>npm install -g hexo
+</code></pre><p>(npm安装失败的自行百度cnpm转到国内npm镜像安装)<br>初始化然后，执行init命令初始化hexo,命令：</p>
+<pre><code>hexo init
+</code></pre><p>好啦，至此，全部安装工作已经完成！blog就是你的博客根目录，所有的操作都在里面进行。</p>
+<p>生成静态页面</p>
+<pre><code>hexo generate（hexo g）
+</code></pre><p>启动本地服务，进行文章预览调试，命令：</p>
+<pre><code>hexo server(hexo s)
+</code></pre><p>浏览器输入 <a href="http://localhost:4000" target="_blank" rel="external">http://localhost:4000</a> 预览</p>
+<h4 id="3-关联hexo和github"><a href="#3-关联hexo和github" class="headerlink" title="3.关联hexo和github"></a>3.关联hexo和github</h4><p>打开之前本地初始化好的hexo文件夹, 找到_config.yml并打开.<br>在最下面找到deploy的配置项并该成:</p>
+<pre><code>deploy:
+
+ type: git
+
+ repo: https://github.com/XXX/XXX.github.io.git
+
+ branch: master
+</code></pre><p>据说https链接和SSH key都可以, 自己试一下吧.</p>
+<p>修改好配置后执行: </p>
+<pre><code>npm install hexo-deployer-git --save
+</code></pre><p>保存好配置后即可执行配置命令</p>
+<pre><code>hexo deploy (hexo d)
+</code></pre><p>完成后在浏览器中打开XXX.github.io即可看到hexo的预设页面<br>恭喜到这里已经配置成功.</p>
+<h4 id="4-部署步骤"><a href="#4-部署步骤" class="headerlink" title="4.部署步骤"></a>4.部署步骤</h4><p>每次部署的步骤，可按以下三步来进行。</p>
+<pre><code>hexo clean
+hexo generate
+hexo deploy
+</code></pre><p>一些常用命令：</p>
+<pre><code>hexo new&quot;postName&quot; #新建文章
+
+hexo new page&quot;pageName&quot; #新建页面
+
+hexo generate #生成静态页面至public目录
+
+hexo server #开启预览访问端口（默认端口4000，&apos;ctrl + c&apos;关闭server）
+
+hexo deploy #将.deploy目录部署到GitHub
+
+hexo help # 查看帮助
+
+hexo version #查看Hexo的版本
+</code></pre><hr>
+<p>下面是copy来的一些可能会出现的报错信息及解决办法:</p>
+<p>ERROR Deployer not found: git 或者 ERROR Deployer not found: github</p>
+<p>解决方法： npm install hexo-deployer-git –save</p>
+<p>如发生报错： ERROR Process failed: layout/.DS_Store , 那么进入主题里面layout和_partial目录下，使用删除命令：</p>
+<p>rm-rf.DS_Store</p>
+<p>ERROR Plugin load failed: hexo-server</p>
+<p>原因：</p>
+<p>Besides,utilities are separated into a standalone module.hexo.util is not reachable anymore.</p>
+<p>解决方法，执行命令：</p>
+<p>sudo npm install hexo-server</p>
+<p>执行命令hexo server，提示：Usage: hexo ….</p>
+<p>原因：</p>
+<p>我认为是没有生成本地服务</p>
+<p>解决方法，执行命令：</p>
+<p>npm install hexo-server –save</p>
+<p>提示：hexo-server@0.1.2 node_modules/hexo-server</p>
+<p>….</p>
+<p>表示成功了参考</p>
+<p>这个时候再执行：</p>
+<p>hexo-server</p>
+<p>得到:</p>
+<p>INFOHexois running at <a href="http://0.0.0.0:4000/.PressCtrl+C" target="_blank" rel="external">http://0.0.0.0:4000/.PressCtrl+C</a> to stop.</p>
+<p>这个时候再点击<a href="http://0.0.0.0:4000，正常情况下应该是最原始的画面，但是我看到的是：" target="_blank" rel="external">http://0.0.0.0:4000，正常情况下应该是最原始的画面，但是我看到的是：</a></p>
+<p>白板和Cannot GET / 几个字</p>
+<p>原因：</p>
+<p>由于2.6以后就更新了，我们需要手动配置些东西，我们需要输入下面三行命令：</p>
+<p>npm install hexo-renderer-ejs –save</p>
+<p>npm install hexo-renderer-stylus –save</p>
+<p>npm install hexo-renderer-marked –save</p>
+<p>这个时候再重新生成静态文件，命令：</p>
+<p>hexo generate（或hexo g）</p>
+<p>启动本地服务器：</p>
+<p>hexo server（或hexo s）</p>
+<p>点击网址<a href="http://0.0.0.0:4000" target="_blank" rel="external">http://0.0.0.0:4000</a> 即可预览</p>
+<hr>
+<h4 id="主题相关"><a href="#主题相关" class="headerlink" title="主题相关"></a>主题相关</h4><p><a href="https://github.com/hexojs/hexo/wiki/Themes" target="_blank" rel="external">主题列表</a><br>百度和知乎也有很多主题推荐, 可以自己去看看.<br>主题文件clone下来后放在hexo目录下的themes文件夹下.<br>同时修改_config.yml配置中的theme项为你下载的主题名称即可, 重新部署hexo生效.</p>
+<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><p>文章在source/_posts, 文章支持Markdown语法，可以使用一些MarkDown渲染工具。如果想修改头像/作者/友情链接等等设置项可以直接在主题的_config.yml文件里面修改.</p>
+<h4 id="百度-谷歌收录"><a href="#百度-谷歌收录" class="headerlink" title="百度/谷歌收录"></a>百度/谷歌收录</h4><p>先看这篇<a href="http://www.jianshu.com/p/8c0707ce5da4" target="_blank" rel="external">文章</a><br>由于github禁止了百度爬虫, 所以托管在github的博客无法被百度收录,以下是解决方案.</p>
+<ol>
+<li>将博客同时部署在github和coding上，coding的服务器在国内，访问速度快，而且最重要的是不禁百度爬虫 </li>
+<li><p>打开根目录下_config.yml文件，修改最下面的deploy部分如下 </p>
+<pre><code>deploy: 
+type: Git 
+repository: 
+github: git@github.com:你的GitHub名/你的GitHub名.github.io.git 
+coding: git@git.coding.NET:你的Coding名/你的Coding名.git 
+branch: master 
+</code></pre></li>
+<li><p>coding上创建一个新项目，建议命名为你的Github名 </p>
+</li>
+<li>本地打开 id_rsa.pub 文件，复制其中全部内容，填写到SSH_RSA公钥key下的一栏，公钥名称可以随意起名字。完成后点击“添加”，然后输入密码或动态码即可添加完成。添加后，在git bash命令输入：ssh -T git@git.coding.net检测公钥是否添加成功 </li>
+<li>在coding项目主页中点击pages服务.</li>
+<li>在DNS Pod中添加两条CNAME记录</li>
+<li>重新部署博客，等待一两天后应该就可以在百度里搜索到你的博客啦（虽然目前为止，百度好像也就收录了我的站点首页= =） </li>
+</ol>
+<p>提示: 百度主动推送比自动推送等要快的多，因此每写完一篇博客后，建议自己主动推送给百度，方法百度站长平台里有写. 在百度站长平台索引量工具定制索引规则为：你的站点/*　可以加快百度爬虫爬取你的博客网站下的子网页并建立索引的速度。</p>
+<h4 id="文章插入图片"><a href="#文章插入图片" class="headerlink" title="文章插入图片"></a>文章插入图片</h4><ol>
+<li>插入本地图片：在\hexo\source目录下新建文件夹，命名随意（以images为例），然后在文章中需要插入图片的地方输入： [“图片描述”] (/images/你的图片名字.JPG)</li>
+<li>插入外部链接图片：直接输入 : [“图片描述”] (图片URL)</li>
+<li>使用七牛云存储等图片链接生成工具：如果博客中使用的图片数量过多，尽量不要用第1种方式，一来git空间有限，二来博客迁移的时候比较麻烦。这里推荐使用图床来存储博客中图片。</li>
+</ol>
+
+  </section>
+
+  <section class="post-comments">
+
+    <!-- 将评论系统（例如Disqus、多说、友言、畅言等）提供的代码片段粘贴在这里 -->
+    
+</section>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <!-- <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span> -->
+    <span class="footer__copyright">呦~❤</span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>
