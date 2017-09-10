@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      高程学习笔记-part-2 | HotHunter&#39;s bed 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="hothunter">
+    
+    
+
+    <meta name="description" content="第四章 变量、作用域和内存问题     P68由于不存在定义某个变量必须要保存何种数据类型值的规则，变量的值以及其数据类型可以在脚本的生命周期内改变。 基本类型和引用类型的值undefined/null/boolean/number/string按值访问，属于基本类型。引用类型的值保存在内存中，javascript无法直接操作内存，引用类型的值是按引用访问的。当复制保存对象的某个变量时，操作的是对">
+<meta property="og:type" content="article">
+<meta property="og:title" content="高程学习笔记-part-2 | HotHunter&#39;s bed">
+<meta property="og:url" content="http://hothunter.com/2017/09/11/高程学习笔记-part-2/index.html">
+<meta property="og:site_name" content="HotHunter&#39;s bed">
+<meta property="og:description" content="第四章 变量、作用域和内存问题     P68由于不存在定义某个变量必须要保存何种数据类型值的规则，变量的值以及其数据类型可以在脚本的生命周期内改变。 基本类型和引用类型的值undefined/null/boolean/number/string按值访问，属于基本类型。引用类型的值保存在内存中，javascript无法直接操作内存，引用类型的值是按引用访问的。当复制保存对象的某个变量时，操作的是对">
+<meta property="og:updated_time" content="2017-09-10T22:27:38.255Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="高程学习笔记-part-2 | HotHunter&#39;s bed">
+<meta name="twitter:description" content="第四章 变量、作用域和内存问题     P68由于不存在定义某个变量必须要保存何种数据类型值的规则，变量的值以及其数据类型可以在脚本的生命周期内改变。 基本类型和引用类型的值undefined/null/boolean/number/string按值访问，属于基本类型。引用类型的值保存在内存中，javascript无法直接操作内存，引用类型的值是按引用访问的。当复制保存对象的某个变量时，操作的是对">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">HotHunter&#39;s bed</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于我</a></li>
+              
+                
+                <li class="navigation__item"><a href="/lab" title="" class="">实验室</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">高程学习笔记-part-2</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2017-09-11" class="post-meta__date date">2017-09-11</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h3 id="第四章-变量、作用域和内存问题-P68"><a href="#第四章-变量、作用域和内存问题-P68" class="headerlink" title="第四章 变量、作用域和内存问题     P68"></a>第四章 变量、作用域和内存问题     P68</h3><p>由于不存在定义某个变量必须要保存何种数据类型值的规则，变量的值以及其数据类型可以在脚本的生命周期内改变。</p>
+<h4 id="基本类型和引用类型的值"><a href="#基本类型和引用类型的值" class="headerlink" title="基本类型和引用类型的值"></a>基本类型和引用类型的值</h4><p>undefined/null/boolean/number/string按值访问，属于基本类型。<br>引用类型的值保存在内存中，javascript无法直接操作内存，引用类型的值是按引用访问的。<br>当复制保存对象的某个变量时，操作的是对象的额引用。但在为对象添加属性时，操作的是实际的对象。</p>
+<p>如果对象不被销毁或者这个属性不被删除，这个属性将一直存在。<br>但是不能给基本类型的值添加属性（尽管这样做不会导致任何错误），只能给引用类型动态添加属性。</p>
+<pre><code>var person = new Object();
+person.name = &quot;hothunter&quot;;
+alert(person.name);         //&quot;guohaote&quot;
+
+var name = &quot;hothunter&quot;;
+name.age = 23;
+alert(name.age);            //undefined
+</code></pre><p>复制：<br>基本类型值复制时，两个变量互相独立，，可以参与任何操作不会互相影响。<br>引用类型值复制时，实际产生一个指针，而这个指针只想存储在堆中的同一个对象，一年次改变其中一个变量，会影响另一个变量。</p>
+<pre><code>var num1 = 5;
+var num2 = num1;
+//虽然两个变量值相同，但并不是同一个值 :)
+
+var obj1 = new Object();
+var obj2 = obj1;
+obj1.name = &quot;Hothunter&quot;;
+alert(obj2.name);       //&quot;Hothunter&quot;
+</code></pre><p>传参：<br>基本类型值传参时，被传递的值会复制给一个局部变量（arguments[i]）。<br>引用类型值，会把这个值在内存中的地址复制给一个局部变量，因此这个局部变量的变化会反映在函数外部。</p>
+<pre><code>function addTen(num){
+    num += 10;
+    return num;
+}
+var count = 20;
+var result = addTen(count);
+alert(count);               //20
+alert(result);              //30
+
+function setName(obj){
+    obj.name = &quot;Hothunter&quot;;
+}
+var person = new Object();
+setName(person);
+alert(person.name);         //&quot;Hothunter&quot;
+</code></pre><p>!:即使在函数内部修改了参数的值，但原始的引用仍然保持不变。实际上，挡在函数内部重写obj时，这个变量引用的就是一个局部对象了。而这个局部对象会在函数执行完毕后立即被销毁。</p>
+<pre><code>function setName(obj){      //函数的参数即为局部变量
+    obj.name = &quot;Hothunter&quot;;
+    obj = new Object();
+    obj.name = &quot;Greg&quot;;
+}
+var person = new Object();
+setName(person);
+alert(person.name);         //&quot;Hothunter&quot;
+</code></pre><p>检测类型：</p>
+<pre><code>var s = &quot;hothunter&quot;;
+var b = &quot;true&quot;;
+var i = 22;
+var u;
+var n = null;
+var o = new Object();
+alert(typeof s);        //string
+alert(typeof b)         //boolean
+alert(typeof i)         //number
+alert(typeof u)         //undefined
+alert(typeof n)         //object
+alert(typeof o)         //object
+</code></pre><p>instance ：如果变量是给定引用类型的实例，instance操作符就会返回true。检测基本类型时返回false。</p>
+<pre><code>alert(person instanceof Object);    //person是Object吗
+alert(colors instanceof Array);     //colors是Array吗
+alert(pattern instanceof RegExp);   //pattern是RegExp吗
+</code></pre><h4 id="执行环境及作用域："><a href="#执行环境及作用域：" class="headerlink" title="执行环境及作用域："></a>执行环境及作用域：</h4><p>定义了变量或者函数有权访问的其他数据，决定各自的行为。每个执行韩静都有一个与之关联的变量对象（variable object），环境中定义的所有变量和函数都保存在这个对象中。虽然编写的代码无法访问，但解析器在处理数据是在后台访问。<br>全局环境被认为window对象。<br>代码在一个环境中执行时，会常见变量对象的一个作用域链（scope chain）。保证对执行环境有权访问的所有变量和函数的有序访问。<br>表示服解析颜值作用域链意义搜索标识符。</p>
+<pre><code>var color = &quot;blue&quot;;
+function changeColor(){
+    if (color === &quot;blue&quot;){
+        color = &quot;red&quot;;
+    }else {
+        color = &quot;blue&quot;;
+    }
+}
+changeColor();
+alert(&quot;color is now: &quot; + color);
+</code></pre><p>局部作用域中定义的变量可以再局部环境中与全局变量互换使用</p>
+<pre><code>var color = &quot;blue&quot;;
+function changeColor(){
+    var anotherColor = &quot;red&quot;;
+    function swapColors(){
+        var tempColor = anotherColor;
+        anotherColor = color;
+        color = tempColor;
+        //这里可以访问color/anotherColor和tempColor
+    }
+    //这里可以访问color和anotherColor，但不能访问tempColor
+    swapColors();
+}
+//这里只能访问color
+changeColor();
+</code></pre><p>内部环境可以通过作用域链访问外部环境，但外部环境不能访问内部环境中的任何变量和函数。</p>
+<p>延长作用域链：<br>try-catch/with语句，都会在作用域链的前端添加一个变量对象。<br>with：会将制定的对象添加到作用域链中。<br>catch：创建一个新的变量对象，包含的是被抛出的错误对象的声明。</p>
+<pre><code>function buildUrl(){
+    var qs = &quot;?debug=true&quot;;
+    with(location){
+        var url = href + qs;
+    }
+    return url;
+}
+</code></pre><p>没有块级元素：<br>不用于其他类C语言，javaScript无块级元素。</p>
+<pre><code>if (true) {
+    var color = &quot;blue&quot;;
+}
+alert (color);      // &quot;blue&quot;
+
+for(var i = 0; i&lt;10 ; i++){
+    doSomeThing();
+}
+alert(i);           //10
+</code></pre><p>使用var声明的变量会自动被添加到最近的环境中。<br>在函数内部，最近的环境就是函数的局部环境；<br>上例中的for/if则被添加到执行环境即全局环境。</p>
+<pre><code>function add(num1, num2){
+    var sum = num1 + num2;
+    return sum;
+}
+var result = add(10 , 20);      //30
+alert(sum);                     //由于sum不是有效的变量，因此会导致错误。
+
+function add(num1, num2){
+    sum = num1 + num2;
+    return sum;
+}
+var result = add(10 , 20);      //30
+alert(sum);                     //30
+</code></pre><p>在函数内部变量没有石油var关键字声明，则自动变成全局变量。</p>
+<p>查询标识符的过程：</p>
+<pre><code>var color = &quot;blue&quot;;
+function getColor(){
+    return color;
+}
+alert(getColor());      // &quot;blue&quot;
+</code></pre><p>如果存在一个局部的变量的定义，搜索会自动停止，不再进入另一个变量对象，如果局部环境中存在同名标识符，就不会适应位于父环境中的标识符。</p>
+<pre><code>var color = &quot;blue&quot;;
+vunction getColor(){
+    var color = &quot;red&quot;;
+    return color;
+}
+alert(getColor());      // &quot;red&quot;
+</code></pre><h4 id="垃圾收集"><a href="#垃圾收集" class="headerlink" title="垃圾收集"></a>垃圾收集</h4><p>执行环境会负责管理代码执行过程中使用的内存。<br>两个实现方法：</p>
+<p>标记清除：<br>垃圾收集器会在运行的时候归给存储在内存中的所有变量都加上标记。然后会去掉环境中的变量以及被环境中的额变量引用的额变量的标记。而在之后再被加上标记的变量将被视为准备删除的变量，原因是环境中的变量已经无法访问到这些变凉了。最后完成内存清除工作，销毁那些带标记的值并收回他们占用的内存。</p>
+<p>引用计数：<br>因为循环的问题，这个方法已被废弃，太长不看了。</p>
+<p>性能问题：<br>因需要周期运行，如果变量分配的内存数量可观，导致回收工作量变大。<br>//TODO:感觉这里涉及到了页面性能优化。</p>
+<pre><code>window.CollectGarbage();        //IE中立即调用垃圾回收
+window.opera.collect();         //Opert7以上版本立即调用垃圾回收
+</code></pre><p>管理内存：<br>存在问题，因为分配给浏览器的可用内存数量小于分配给桌面应用的（出于安全考虑，防止javascript网页耗尽全部内存导致系统崩溃）。内存闲置问题不仅会影响给变量分配的内存，同事还会影响调用栈以及在一个贤臣各种能够同时执行的语句数量。<br>所以：一旦数据不再有用，最好通过将其值设置为null来释放其引用–解除引用(dereferencing)。适用于大多数全局变量和全局对象的属性。</p>
+<pre><code>function createPerson(name){
+    var localPerson = new Object();
+    localPerson.name = name;
+    return localPerson;
+}
+var globalPerson = createPerson(&quot;hothunter&quot;);
+//手工解除globalPerson的引用
+globalPerson = null;
+</code></pre><p>localPerson在函数执行环境结束时自动被回收，但globalPerson则需要在不是用他的时候手工解除引用。<br>珍重目的不意味着自动回收该所占用的内存。真正作用是让值脱离执行环境，以便垃圾收集器下次运行将其回收。</p>
+<hr>
+<h3 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h3><p>引用类型的值（对象）是引用类型的一个实例。在EMCAScript中，引用类型是一种数据结构，将数据和功能组织在一起。也被成为<b>类</b>、<b>对象定义</b>。<br>对象是某个特定引用类型的实例。</p>
+<pre><code>var person = new Object();
+</code></pre><p>↑ 创建了Object引用类型的一个新实例，然后把该实例保存在了变量person中。使用的构造函数是Object，它只为新兑现该定义了默认的属性和方法。</p>
+<h4 id="Object-类型"><a href="#Object-类型" class="headerlink" title="Object 类型"></a>Object 类型</h4><p>创建Object</p>
+<pre><code>var person = new Object();
+person.name = &quot;Hothunter&quot;;
+person.age = 23;
+
+var person = {
+    &quot;name&quot; : &quot;HotHunter&quot;,
+    &quot;age&quot; : 23
+};
+</code></pre><p>//TODO:上下文<br>表达式上下文（expression context）：<br>语句上下文（statement context）：</p>
+<pre><code>var person = {
+    &quot;name&quot;  :   &quot;HotHunter&quot;,
+    &quot;age&quot;   :   23,
+    5       :   true
+};
+
+var person = {};        ==&gt;     var person = new Object();
+
+function displayInfo(args){
+    var output = &quot;&quot;;
+    if(typeof args.name = &quot;string&quot;){
+        output += &quot;Name:&quot; + args.name + &quot;\n&quot;;
+    }
+    if(typeof args.age == &quot;namber&quot;){
+        output += &quot;Age:&quot; +　args.age + &quot;\n&quot;;
+    }
+    alert(output);
+}
+displayInfo({
+    name :　&quot;Hothunter&quot;,
+    age : 23
+    });
+displayInfo({
+    name : &quot;gray&quot;;
+    });
+</code></pre><p>对那些必须治使用命名参数，而是用对象字面量来封装过多个可选参数。</p>
+<pre><code>alert(person[&quot;name&quot;]);      //&quot;Hothunter&quot;
+alert(person.name);         //&quot;Hothunter&quot;
+</code></pre><p>从功能上看，这两种访问属性的方法没有任何区别。但方括号语法的主要优点是可以通过变量来访问属性。</p>
+<pre><code>var propertyName = &quot;name&quot;;
+alert(person[propertyName]);        //&quot;Hothunter&quot;
+person[&quot;first name&quot;] = &quot;Hothunter&quot;      //first name中间有一个空格，只能用[]访问到。
+</code></pre><p>通常，除非必须使用变量来访问属性，负责我们建议使用点表示法。</p>
+<h4 id="Array-类型"><a href="#Array-类型" class="headerlink" title="Array 类型"></a>Array 类型</h4><p>数组：数据的有序列表。<br>ECMAScript数组的每一项可以保存任何类型的数据。数组的大小是可以动态调整的，随着数组的添加自动增长一容纳新数据。</p>
+<p>创建数组：</p>
+<pre><code>var colors = new Array();
+var colors = new Array(20);
+var colors = new Array(&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;);
+var colors = Array(3);
+//
+var name = [];          //一个空数组
+var values = [1,2,];    //不要这样！创建一个包含2或3项的数组
+var options = [,,,,,];  //不要这样！创建一个包含5或6项的数组
+
+var colors = [&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;];
+alert(colors[0]);           //显示第一项
+colors[2] = &quot;black&quot;;        //修改第三项
+colors[3] = &quot;brown&quot;;        //新增第四项
+
+var colors = [&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;];
+colors.length = 2;
+alert(colors[2]);           //undefined     .length缩小了数组长度
+
+var colors = [&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;];
+colors.length = 4;
+alert(colors[3]);           //undefined     .length增加了长度
+</code></pre><p>由于数组最后一线搞得key始终是length-1，因此下一个新项的位置就是length</p>
+<pre><code>var colors = [&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;];
+colors[colors.length] = &quot;black&quot;;
+colors[colors.length] = &quot;brown&quot;;
+
+var colors = [&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;];
+colors[99] = &quot;black&quot;;
+alert(colors.length);       //100
+</code></pre><p>检测数组：</p>
+<pre><code>if (value instanceof Array){
+    doSomeThing();
+}
+
+if (Array.isArray(value)){
+    doSomeThing();
+}
+</code></pre><p>转换方法：</p>
+<pre><code>var colors = [&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;];
+alert(colors.toString());           //red,blue,green
+alert(colors.valueOf());            //red,blue,green
+alert(colors);                      //red,blue,green
+</code></pre><p>toString将每个值得字符串表示拼接成字符串，用逗号分隔。</p>
+<pre><code>var person1 = {
+    toLocaleString : function (){
+        return &quot;HotHunter&quot;;
+    },
+    toSring : function(){
+        return &quot;Hot&quot;;
+    }
+};
+var person2 = {
+    toLocaleString : function (){
+        return &quot;meishaonv&quot;;
+    },
+    toString : function (){
+        return &quot;msn&quot;;
+    }
+};
+//
+var people [person1, person2];
+alert(people);                      //Hot,msn
+alert(people.toString());           //Hot,msn
+alert(people.toLocaleString());     //HotHunter,meishaonv
+</code></pre><p>！：console.log和alert：<br>console.log可以打印任何类型数据。而alert()只能打印String，如果alert输出的是对象，自动调用toString()。</p>
+<pre><code>console.log(people);                    //[Object, Object];
+console.log(people.toString());         //Hot,msn
+console.log(people.toLocaleString());   //HotHunter.meishaonv
+</code></pre><p>数组集成的toLocaleString()/toString()/valueOf()在默认情况下都会以逗号分隔的字符串形式返回数组项。<br>使用join()方法可以使用不同的分隔符构建这个字符串</p>
+<pre><code>var colors = [&quot;red&quot; ,&quot;blue&quot;, &quot;green&quot;];
+alert(colors.join(&quot;,&quot;));        //red,blue,green
+alert(colors.join(&quot;||&quot;));       //red||blue||green
+</code></pre><p>栈方法：<br>栈数据结构的访问规则是LIFO（后进先出）。<br>数组可以表现栈，可以限制插入和删除项的数据结构。最新添加的项最早被移除。栈中的推入和弹出只发生在栈的顶部。<br>push()/pop()–推入、弹出。<br>push()接收任意数量的参数，诸葛添加到数组末尾，返回修改后数组的长度。<br>pop()从数组末尾一处最后一项，减少数组的length，返回溢出的项。</p>
+<pre><code>var colors = new Array();
+var count = colors.posh(&quot;red&quot;, &quot;green&quot;);        //推入两项
+alert(count);       //2
+//
+count = colors.push(&quot;black&quot;);           //推入一项
+alert(count);       //3
+//
+var item = colors.pop();
+alert(item);            //&quot;black&quot;
+alert(colors.length);       //2
+</code></pre><p>可以将栈方法和数组其他方法一同使用：</p>
+<pre><code>var colors = [&quot;red&quot;, &quot;blue&quot;];
+colors.push(&quot;brown&quot;);
+colors[3] = &quot;black&quot;;
+alert(colors.length);       //4
+//
+var item = color.pop();
+alert(item);        //&quot;black&quot;
+</code></pre><p>队列方法：</p>
+<p>栈数据结构的访问规则是LIFO（后进先出）。<br>队列数据结构的访问规则是FIFO（先进先出）。队列在列表的末端加项，从列表的前端移除项。<br>shift()，一处数组中第一个项并返回该项，结合push()实现队列一样使用数组</p>
+<pre><code>var colors = new Array();
+var count = colors.push(&quot;red&quot;, &quot;green&quot;);
+alert(count);   //2
+//
+count = colors.push(&quot;black&quot;);
+alert(count);   //3
+//
+var item = colors.shift();
+alert(item);    //&quot;red&quot;
+alert(colors.length);       //2
+</code></pre><p>unshift()：在数组前端添加任意个项并返回新数组的长度。</p>
+<pre><code>var colors = new Array();
+var count = colors.unshift(&quot;red&quot;, &quot;green&quot;);
+alert(count);   //2
+//
+count = colors.unshift(&quot;black&quot;);
+alert(count);   //3
+//
+var item = colors.pop();
+alert(item);        //&quot;green&quot;
+alert(colors.length);       //2
+</code></pre><p>重排序方法：<br>reverse():反转数组项的顺序。<br>sort():默认情况按升序排列数组项（上大后小）。调用每个数组项的toString()，然后比较得到字符串，确定排序。即使数组每一项都是数值，sort()比较的也是字符串</p>
+<pre><code>var values = [1, 2, 3, 4, 5];
+values.reverse();
+alert(values);      //5, 4, 3, 2, 1
+
+var values = [0, 1, 5, 10, 15];
+values.sort();
+alert(values);      //0,1,10,15,5
+</code></pre><p>sort()接受一个比较函数作为参数，以便制定哪个值位于前面。<br>比较函数接收两个参数，如果第一个参数应该位于第二个之前则返回负数，如果两个参数相等返回0，第一个参数位于第二个之后返回正数。</p>
+<pre><code>function compare(value1, value2) {
+    if (value1 &lt; value2) {
+        return -1;
+    } else if (value1 &gt; value2) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+    //
+var values = [0, 1, 5, 10, 15];
+values.sort(compare);
+alert(values);          //0, 1, 5, 10, 15
+</code></pre><p>reverse()和sort()方法的返回值是经过排序之后的数组。</p>
+<p>更简单的比较函数：</p>
+<pre><code>function compare(value1, value2){
+    return value2 - value1;
+}
+
+var values = [2,5,6,44,8];
+alert(values.sort(compare));        //44, 8, 6, 5, 2
+</code></pre><p>操作方法:</p>
+<p>concat():给予当前数组中的所有项创建一个新数组。<br>当传递给concat()的是一个或多个数组，方法会将浙西额数组中的每一项都添加到结果数组中。如果传递的值不是数组，就会被简单地添加到结果数组的末尾。</p>
+<pre><code>var colors = [&quot;red&quot;, &quot;green&quot;, &quot;blue&quot;];
+var colors2 = colors.concat(&quot;yellow&quot;, [&quot;black&quot;, &quot;brown&quot;]);
+
+alert(colors);          //red,green,blue
+alert(colors2);         //red,green,blue,yellow,black,brown
+</code></pre><p>slice():基于当前数组中的一或多个项创建一个新数组。<br>只有一个参数：slice()返回从该参数制定位置开始到当前数组末尾的所有项。<br>两个参数：返回其实和结束为止之间的项，但不包括结束为止的项。不影响原始数组。</p>
+<pre><code>var colors = [&quot;red&quot;, &quot;green&quot;, &quot;blue&quot;, &quot;yellow&quot;, &quot;purple&quot;];
+var colors2 = colors.slice(1);
+var colors3 = colors.slice(1,4);
+
+alert(colors2);         //green,blue,yellow,pruple
+alert(colors3);         //green,blue,yellow
+</code></pre><p>如果参数中有一个负数，则用数组长度加上该数来确定相应的位置。<br>在一个包含5项的数组，slice(-2,-1) == slice(3,4)。如果结束位置小于起始位置，返回空数组。</p>
+<p>splice():主要用途项数组插入项。始终返回一个数组，返回被删除的项，若没删除任何项，返回空。</p>
+<ul>
+<li>删除：删除任意数量项。splice(起始位置，删除的项数)。splice(0,2)删除数组的前两项。</li>
+<li>插入：项指定位置插入任意数量的项。splice(起始位置,0(删除的项数),要插入的项); splice(2,0,”red”,”green”)。</li>
+<li><p>替换：向指定位置插入任意数量的项，同事删除任意数量的项。splice(起始位置,删除的项数，要插入的项);     splice(2,1,”green”,”red”)。</p>
+<p>  var colors = [“red”, “green”, “blue”];<br>  var removed = colors.splice(0,1);<br>  alert(colors);      //green,blue<br>  alert(removed);     //red</p>
+<p>  removed = colors.splice(1, 0, “yellow”, “orange”);<br>  alert(colors);      //green,yellow,orange,blue<br>  alert(removed);     //空数组</p>
+<p>  removed = colors.splice(1, 1, “red”, “purple”);<br>  alert(colors);      //green,red,purple,orange,blue<br>  alert(removed);     //yellow</p>
+</li>
+</ul>
+<p>位置方法：<br>indexOf()/lastIndexOf()：<br>两个参数：要查找的项和（可选）表示查找起点位置的索引。indexOf()从数组开始查找，lastIndexOf()从数组末尾开始查找。<br>都返回要查找的项在数组中的外置(下标)，没找到返回-1。要求查找的项必须全等(===)</p>
+<pre><code>var numbers = [1, 2, 3, 4, 5, 4, 3, 2, 1];
+
+alert(numbers.indexOf(4));          //3
+alert(numbers.lastIndexOf(4));      //5
+
+alert(numbers.indexOf(4, 4));       //5
+alert(numbers.lastIndexOf(4, 4));   //3
+
+var person = {name: &quot;Hothunter&quot;};
+var people = [{name: &quot;Hothunter&quot;}];
+
+var morePeople = [person];
+
+alert(people.indexOf(person));      //-1
+alert(morePeople.indexOf(person));  //0
+</code></pre><p>迭代方法：<br>每个方法接收两个参数：<br>要在每一项上运行的函数和该函数的作用域对象（可选）–影响this的值。<br>传入这些方法中的函数会接收三个参数，数组项的值、该项在数组中的位置和数组对象本身。<br>根据使用方法不同，返回值不能确定会不会被该函数影响。</p>
+<ul>
+<li>every()：对数组的每一项运行函数。均true，则true。</li>
+<li>filter()：对数组的每一项运行函数。返回该函数会返回ture的项组成的数组。</li>
+<li>forEach()：对数组的每一项运行函数。无返回值。</li>
+<li>map()：对数组的每一项运行函数。返回每次函数调用的结果组成的数组。</li>
+<li><p>some()：对数组的每一项运行函数。任一项返回true，返回true。<br>以上方法均不修改原数组值。</p>
+<p>  var numbers = [1, 2, 3, 4, 5, 4, 3, 2, 1];</p>
+<p>  var everyResult = numbers.every(function(item, index, array){</p>
+<pre><code>return (item &gt; 2);
+});
+</code></pre><p>  alert(everyResult);     //false</p>
+<p>  var someResult = numbers.some(function(item, index, array){</p>
+<pre><code>return (item &gt; 2);
+});
+</code></pre><p>  alert(someResult);      //true</p>
+<p>  var filterResult = numbers.filter(function(item, index, array){</p>
+<pre><code>return (item &gt; 2);
+});
+</code></pre><p>  alert(filterResult);    //[3,4,5,4,3]</p>
+<p>  var mapResult = numbers.map(function(item, index, array){</p>
+<pre><code>return (item * 2);
+});
+</code></pre><p>  alert(mapResult);       //[2,4,6,8,10,8,6,4,2]</p>
+<p>  numbers.forEach(function(item, index, array){</p>
+<pre><code>doSomeThing();
+});
+</code></pre></li>
+</ul>
+<p>最后一个forEach()，只是对数组中的每一项运行传入的函数。没有返回值，本质上与使用for循环迭代数组一样。</p>
+<p>归并方法：</p>
+<p>reduce()和reduceRight()：<br>迭代数组的所有项，构建一个最终返回的值。<br>reduce()方法从数组的第一项开始，遍历到最后。<br>reduceRight()方法从数组最后一项开始，向前遍历到第一项。<br>都接收两个参数：一个在每一项调用的函数和作为归并基础的初始值（可选）。<br>传给reduce()和reduceRight()的函数接收4个参数：前一个值、当前值、项的索引和数组对象。这个函数返回的任何值都会作为第一个参数自动传给下一项。第一次迭代发生在数组第二项上，因此第一个参数是数组的第一项，第二个参数就是数组第二项。</p>
+<pre><code>var values = [1, 2, 3, 4, 5];
+var sum = values.reduce(function(prev, cur, index, array){
+    return prev + cur;
+    });
+alert(sum);         //15
+
+var sum2 = values.reduceRight(function(prev, cur, index,array){
+    return prev + cur;
+    });
+alert(sum2);        //15
+</code></pre><h4 id="Date类型"><a href="#Date类型" class="headerlink" title="Date类型"></a>Date类型</h4><pre><code>var now = new Date();
+</code></pre><p>Date.parse()/Date.UTC()</p>
+<pre><code>var someDate = new Date(Date.parse(&quot;May 25, 2004&quot;));
+var someDate = new Date(&quot;May 25, 2004&quot;);        // === ↑
+
+var y2k = new Date(Date.UTC(2000, 0));      //GMT时间2000/01/01午夜零时
+var allFives = new Date(Date.UTC(2005,4,5,17,55,55));   //GMT时间2005/05/05 5:55:55
+</code></pre><p>Date.now()，返回表示调用这个方法时的日期和时间的毫秒数。</p>
+<pre><code>var start = Date.now();
+doSomething();
+var stop = Date.new();
+var useTime = stop - start;
+
+var start = +new Date();
+doSomething();
+var stop = +new Date();
+var useTime = stop -start;          // ← === ↑
+</code></pre><p>继承的方法：</p>
+<p>同样重写了toString()/toLoaleString()/valueOf()方法。前两个不同浏览器返回格式也不同，同时也只在调试时有用。<br>valueOf()不反悔字符串，而是返回日期的毫秒。</p>
+<pre><code>var date1 = new Date(2007, 0, 1);       //&quot;January 1, 2007&quot;
+var date2 = new Date(2007, 1, 1);       //&quot;February 1, 2007&quot;
+
+alert(date1 &lt; date2);       //true
+alert(date1 &gt; date2);       //false
+</code></pre><p>日期格式化方法：<br>将日期格式化为字符串<br>toDateString()/toTimeSting()/toLocaleDateStrig()/toLocaleTimeString()/<br>toUTCString()<br>以上字符串格式方法的输出也是因浏览器而异，所以没有哪一个方法用来在用户界面中使用。</p>
+<p>日期、时间组件方法：<br>表太长了我不写了。P102，用到了自己查吧。</p>
+<h4 id="RegExp类型"><a href="#RegExp类型" class="headerlink" title="RegExp类型"></a>RegExp类型</h4><p>ECMAScript通过RegExp类型支持正则表达式。</p>
+<pre><code>var expression = / pattern / flags ;
+</code></pre><p>模式（pattern）只带正则表达式，可以包含字符类，限定符，分组，向前查找以及反响引用。每个正则表达式都可以带有一个或多个标志（flags），用以标明正则表达式的行为。</p>
+<ul>
+<li>g：表示全局（global）模式，应用于所有字符串，而非在发现第一个匹配项时立即停止。</li>
+<li>i:表示不区分大小写（case-insensitive）模式，即在确定匹配项时忽略模式与字符串的大小写；</li>
+<li><p>m：表示多行（multiline）模式，在到达一行文本末尾时还会继续查找下一行中是否存在于模式匹配的项。</p>
+<p>  //匹配字符串中所有的“at”<br>  var pattern1 = /at/g;</p>
+<p>  //匹配第一个“bat”或“cat”，不区分大小写<br>  var pattern2 = /[bc]at/i;</p>
+<p>  //匹配所有已“at”结尾的3个字符的组合，不区分大小写<br>  var pattern3 = /.at/gi;</p>
+</li>
+</ul>
+<p>模式中使用的 元字符 都必须转移，包括：<br>(  [  {  \  ^  |  )  ?  *  +  .  ]  }</p>
+<pre><code>//匹配第一个“bat”或“cat”，不区分大小写
+var pattern1 = /[bc]at/i;
+
+//匹配第一个&quot; [bc]at&quot;  ，不区分大小写
+var pattern2 = /\[bc\]at/i;
+
+//匹配所有以“at”结尾的3个字母的组合，不区分大小写
+var pattern3 = /.at/gi;
+
+//匹配所有&quot;.at&quot; ， 不区分大写小写
+var pattern4 = /\.at/gi;
+</code></pre><p>使用RegExp构造函数，两个参数：要匹配的字符串模式，可选的标志字符串。</p>
+<pre><code>//匹配第一个“bat”或“cat”，不区分大小写
+var pattern1 = /[bc]at/i;
+
+//与pattern1相同，使用构造函数：
+var pattern2 = new RegExp(&quot;[bc]at&quot;, &quot;i&quot;);
+
+var re = null,
+    i;
+for (i = 0; i &lt; 10; i++){
+    re = /cat/g;
+    re.test(&quot;catastrophe&quot;);
+}
+for (i = 0; i &lt; 10; i++){
+    re = new RegExp(&quot;cat&quot;, &quot;g&quot;);
+    re.test(&quot;catastrophe&quot;);
+}
+</code></pre><p>以上两种方法，在ECMAScript5之后没有区别。</p>
+<p>RegExp实例属性：</p>
+<ul>
+<li>global：布尔值，表示是否设置了g。</li>
+<li>ignoreCase：布尔值，表示是否设置了i。</li>
+<li>lastIndex：正数，表示开始搜索下一个匹配项的字符位置，从0算起。</li>
+<li>multiline：布尔值，表示是否设置了m。</li>
+<li>source：正则表达式的字符串表示，按照字面量形式而非传入构造函数中的字符串模式返回。</li>
+</ul>
+<p>虽然方法多，不过都没什么用，因为构造的时候都写清楚了。</p>
+<pre><code>var pattern1 = /\[bc]at/i;
+
+alert(pattern1.global);         //false
+alert(pattern1.ignoreCase);     //true
+alert(pattern1.lastIndex);      //0
+alert(pattern1.multline);       //false
+alert(pattern1.source);         //&quot;\[bc\]at&quot;
+
+var pattern2 = new RegExp(&quot;\\[bc\\]at&quot;, &quot;i&quot;);
+
+alert(pattern1.global);         //false
+alert(pattern1.ignoreCase);     //true
+alert(pattern1.lastIndex);      //0
+alert(pattern1.multline);       //false
+alert(pattern1.source);         //&quot;\[bc\]at&quot;
+</code></pre><p>RegExp实力方法：<br>exec()：一个参数：要应用模式的字符串，返回包含第一个匹配项信息的数组；没有匹配项的情况返回null。同时包含两个额外的属性：index和input。index表示匹配项在字符串的位置，input表示应用正则的字符串。</p>
+<pre><code>var text = &quot;mom and dad and baby&quot;;
+var pattern = /mom( and dad( and baby)?)?/gi;
+
+var matches = pattern.exec(text);
+alert(matches.index);       //0
+alert(matches.input);       //&quot;mom and dad and baby&quot;
+alert(matches[0]);          //&quot;mom and dad and baby&quot;
+alert(matches[1]);          //&quot; and dad and baby&quot;
+alert(matches[2]);          //&quot; and baby&quot;
+
+var text = &quot;cat, bat, sat, fat&quot;;
+var pattern1 = /.at/;
+
+var matches = pattern1.exec(text);
+alert(mathces.index);           //0
+alert(mathces.[0]);             //cat
+alert(pattern1.lastIndex);      //0
+
+matches = pattern1.exec(text);
+alert(mathces.index);           //0
+alert(mathces.[0]);             //cat
+alert(pattern1.lastIndex);      //0
+
+var pattern2 = /.at/g;
+
+var matches = pattern2.exec(text);
+alert(matches.index);           //0
+alert(matches[0]);              //cat
+alert(pattern2.lastIndex);      //3
+
+matches = pattern2.exec(text);
+alert(matches.index);           //5
+alert(matches[0]);              //bat
+alert(matches.lastIndex);       //8
+</code></pre><p>pattern2是全局模式，因此每次调用exec()都会返回字符串中的下一个匹配项，直至搜索到字符串末尾为止。<br>同时在全局模式下，lastIndex的值在每次调用exec()后都会增加，而在非全局模式下保持不变。</p>
+<p>test()：接受一个字符串参数。匹配是返回true，否则false。</p>
+<pre><code>var text = &quot;000-00-0000&quot;;
+var pattern = /\d{3}-\d{2}-\d{4}/;
+
+if(pattern.test(text)){
+    alert(&quot;the pattern was matched.&quot;);
+}
+</code></pre><p>RegExp竭诚toLacaleString()和toString()都会返回正则表达式的字面量，与创建方式无关。</p>
+<pre><code>var pattern = new RegExp(&quot;\\[bc\\]at&quot;, &quot;gi&quot;);
+alert(pattern.toString());          //  /\[bc\]at/gi
+alert(pattern.toLacaleString());    //  /\[bc\]at/gi
+</code></pre><p>RegExp构造函数属性<br>这些属性适用于作用域中所有正则表达式，并且给予所执行的最近一次正则表达式操作而变化。  </p>
+<ul>
+<li>input  $_  最近一次要匹配的字符串</li>
+<li>lastMatch   $&amp;   最近一次的匹配项</li>
+<li>lastParen   $+   最近一次匹配的捕获组</li>
+<li>leftContext   $`   input字符串中lastMatch之前的文本</li>
+<li>multiline   $*   布尔值，表示是否所有表达式都使用多行模式</li>
+<li><p>regitContext   $’   Input字符串中LastMatch之后的文本</p>
+<p>  var text = “this has been a short summer”;<br>  var pattern = /(.)hort/g;</p>
+<p>  //注意：Opera不支持input、lastMatch、lastParen和multilne属性<br>  //IE不支持multiline属性<br>  if (pattern.test(text)){</p>
+<pre><code>alert(RegExp.input);            //this has been a short summer
+alert(RegExp.leftContext);      //this has been a
+alert(RegExp.rightContext);     //summer
+alert(RegExp.lastMatch);        //short
+alert(RegExp.lastParen);        //s
+alert(RegExp.multiline);        //false
+</code></pre><p>  }</p>
+<p>  var text  “this has been a short summer”;<br>  var pattern = /(.)hort/g;</p>
+<p>  if(pattern.test(text)){</p>
+<pre><code>alert(RegExp.$_);               //this has been a short summer
+alert(RegExp[&quot;$`&quot;]);            //this has been a
+alert(RegExp[&quot;$&apos;&quot;]);            //summer
+alert(RegExp[&quot;$&amp;&quot;]);            //short
+alert(RegExp[&quot;$+&quot;]);            //s
+alert(RegExp[&quot;$*&quot;]);            /false
+</code></pre><p>  }</p>
+</li>
+</ul>
+<p>除此以外还有九个用于村粗捕获组的够赞函数属性。分别用于存储第一到第九个匹配的捕获组，在调用exec()/test()是，这些属性会被自动填充。</p>
+<pre><code>var text = &quot;this has been a short summer&quot;;
+var pattern  = /(..)or(.)g;
+
+if(pattern.test(text)){
+    alert(RegExp.$1);           //sh
+    alert(RegExp.$2);           //t
+}
+</code></pre><p>模式的局限性：<br>ECMAScript值不支持一些高级正则表达式的特性。</p>
+<ul>
+<li>匹配字符串开始和结尾的\A和\Z锚</li>
+<li>向后查找（lookbehind）</li>
+<li>并集和交集类</li>
+<li>原子组（atomic grouping)</li>
+<li>Unicode支持（单个字符除外，如\uFFFF）</li>
+<li>命名的捕获组</li>
+<li>s（single,单行）和x（free-spacing,无间隔）匹配模式</li>
+<li>条件匹配</li>
+<li>正则表达式注释</li>
+</ul>
+
+  </section>
+
+  <section class="post-comments">
+
+    <!-- 将评论系统（例如Disqus、多说、友言、畅言等）提供的代码片段粘贴在这里 -->
+    
+</section>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <!-- <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span> -->
+    <span class="footer__copyright">呦~❤</span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>
