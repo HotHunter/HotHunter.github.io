@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      高程学习笔记 part.5 | HotHunter&#39;s bed 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="hothunter">
+    
+    
+
+    <meta name="description" content="继承ECMAScript只支持实现继承，实现继承主要是依靠原型链实现。 原型链： 利用原型让一个引用类型继承另一个引用类型的属性和方法。每个构造函数都有一个原型对象，原型对象都包含一个指向构造函数的指针，而实例都包含一个指向原型对象的内部指针。使原型对象等于另一个类型的实例，显然此时的原型对象见更包含一个纸箱另一个原型的指针，相应的，另一个原型中也包含着一个指向另一个构造函数的指针。假如另一个原型">
+<meta property="og:type" content="article">
+<meta property="og:title" content="高程学习笔记 part.5 | HotHunter&#39;s bed">
+<meta property="og:url" content="http://hothunter.com/2017/11/14/高程学习笔记-part-5/index.html">
+<meta property="og:site_name" content="HotHunter&#39;s bed">
+<meta property="og:description" content="继承ECMAScript只支持实现继承，实现继承主要是依靠原型链实现。 原型链： 利用原型让一个引用类型继承另一个引用类型的属性和方法。每个构造函数都有一个原型对象，原型对象都包含一个指向构造函数的指针，而实例都包含一个指向原型对象的内部指针。使原型对象等于另一个类型的实例，显然此时的原型对象见更包含一个纸箱另一个原型的指针，相应的，另一个原型中也包含着一个指向另一个构造函数的指针。假如另一个原型">
+<meta property="og:updated_time" content="2017-11-14T01:21:44.126Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="高程学习笔记 part.5 | HotHunter&#39;s bed">
+<meta name="twitter:description" content="继承ECMAScript只支持实现继承，实现继承主要是依靠原型链实现。 原型链： 利用原型让一个引用类型继承另一个引用类型的属性和方法。每个构造函数都有一个原型对象，原型对象都包含一个指向构造函数的指针，而实例都包含一个指向原型对象的内部指针。使原型对象等于另一个类型的实例，显然此时的原型对象见更包含一个纸箱另一个原型的指针，相应的，另一个原型中也包含着一个指向另一个构造函数的指针。假如另一个原型">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">HotHunter&#39;s bed</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于我</a></li>
+              
+                
+                <li class="navigation__item"><a href="/lab" title="" class="">实验室</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">高程学习笔记 part.5</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2017-11-14" class="post-meta__date date">2017-11-14</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h4 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h4><p>ECMAScript只支持实现继承，实现继承主要是依靠原型链实现。</p>
+<p>原型链：</p>
+<p>利用原型让一个引用类型继承另一个引用类型的属性和方法。<br>每个构造函数都有一个原型对象，原型对象都包含一个指向构造函数的指针，而实例都包含一个指向原型对象的内部指针。使原型对象等于另一个类型的实例，显然此时的原型对象见更包含一个纸箱另一个原型的指针，相应的，另一个原型中也包含着一个指向另一个构造函数的指针。假如另一个原型又是另一个类型的实例，上述关系依然成立，构成了实例与原型的链条。。</p>
+<pre><code>function SuperType(){
+    this.property = true;
+}
+
+SuperType.prototype.getSuperValue = function(){
+    return this.property;
+}
+
+function SubType(){
+    this.subproperty = false;
+}
+
+//继承了SuperType
+SubType.prototype = new SuperType();
+
+SubType.prototype.getSubValue = function(){
+    return this.subproperty;
+};
+
+var instance = new SubType();
+alert(instance.getSuperValue());            //true
+</code></pre><p>原来存在于SuperType是所有属性和方法，现在也存在于SubType.prototype中。</p>
+<p>所有函数的默认原型都是Object的实例，因此默认原型都会包含一个内部指针，指向Object.prototype。也整死所有自定义类型都会继承toString()、vlaueOf()等默认方法的根本原因。</p>
+<p>一句话，SubType继承了SuperType，而SuperType继承了Object。当调用instance.toString()时，实际上调用的是保存在Object.prototype中的那个方法。</p>
+<p>确定原型和实例的关系：<br>两种方式确实能够原型和实例之间的关系。<br>第一种使用instanceof，只要用这个操作符来测试实例与原型链中出现过的构造函数，结果就会返回true</p>
+<pre><code>alert(instance instanceof Object);          //true
+alert(instance instanceof SuperType);       //true
+alert(instance instanceof SubType);         //true
+</code></pre><p>第二种使用isPrototypeOf()方法，与上面原理相同</p>
+<pre><code>alert(Object.prototype.isPrototypeOf(instance));            //true
+alert(SuperType.prototype.isPrototypeOf(instance));         //true
+alert(SubType.prototype.isPrototypeOf(instance));           //true
+</code></pre><p>谨慎定义方法：<br>子类型有时候需要覆盖超类型中的某个方法，或者需要添加超类型中不存在的某个方法。但不管怎样，给原型添加方法的代码一定要放在替换原型的语句之后。<br>重写后的方法会屏蔽原来的方法。</p>
+<pre><code>function SuperType(){
+    this.property = true;
+}
+
+SuperType.prototype.getSuperValue = function(){
+    return this.property;
+}
+
+function SubType(){
+    this.subproperty = false;
+}
+
+//继承了SuperType
+SubType.prototype = new SuperType();
+
+//添加了新方法
+SubType.prototype.getSubValue = function(){
+    return this.subproperty;
+};
+
+//重写超类型中的方法
+SubType.prototype.getSuperValue = function(){
+    return false;
+};
+
+var instance = new SubType();
+alert(instance.getSuperValue());            //false
+</code></pre><p>通过原型链实现继承时，不能使用对象字面量创建原型方法。这样做就会重写原型链。</p>
+<pre><code>function SuperType(){
+    this.property = true;
+}
+
+SuperType.prototype.getSuperValue = function(){
+    return this.property;
+}
+
+function SubType(){
+    this.subproperty = false;
+}
+
+//继承了SuperType
+SubType.prototype = new SuperType();
+
+//使用字面量添加新方法，会导致上一行代码无效
+SubType.prototype = {
+    getSubValue : function (){
+        return this.subproperty;
+    },
+    someOtherMethod : function(){
+        return false;
+    }
+};
+
+var instance = new SubType();
+alert(instance.getSuperValue());            //error!
+</code></pre><p>原型链的问题：<br>在通过原型来实现继承时，原型实际上会变成另一个类型的实例。。原先的实例属性也就变成了现在的原型属性了。</p>
+<pre><code>function SuperType(){
+    this.colors = [&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;];
+}
+
+function SubType(){
+}
+
+//继承了SuperType
+SubType.prototype = new SuperType();
+
+var instance1 = new SubType();
+instance1.colors.push(&quot;black&quot;);
+alert(instance1.colors);            //&quot;red,blue,green,black&quot;
+
+var instance2 = new SubType();
+alert(instance2.colors);            //&quot;red,blue,green,black&quot;
+</code></pre><p>第二个问题：在创建子类型的时候，不能先沟槽类型的构造函数中床底参数。实际上应该是没有办法在不影响所有对象实例的情况下，给超类型的构造函数传递参数。</p>
+<p>实践中很少会使用原型链。</p>
+<p>借用构造函数：<br>也叫做伪造对象或经典继承。在子类型构造函数的内部调用超类型构造函数。因为函数时在特定环境中执行代码的对象，因此通过apply()/call()可以在新的创建的对象上执行构造函数。</p>
+<pre><code>function SuperType(){
+    this.colors = [&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;];
+}
+
+function SubType(){
+    //继承了SuperType
+    SuperType.call(this);
+}
+
+var instance1 = new SubType();
+instance1.colors.push(&quot;black&quot;);
+alert(instance1.colors);            //&quot;red,blue,green,black&quot;
+
+var instance1 = new SubType();
+alert(instance2.colors);            //&quot;red,blue,green&quot;
+</code></pre><p>相对于原型链，急用构造函数有一个喊打的有事，可以再子类型构造函数中项超类型构造函数传递参数。</p>
+<pre><code>function SuperTYpe(name){
+    this.name = name;
+}
+
+function SubType(){
+    //继承了SuperType，同时传递参数
+    SuperType.call(this,&quot;hothunter&quot;);
+
+    //实例属性
+    this.age = 29;
+}
+
+var instance = new SubType();
+alert(instance.name);           //&quot;hothunter&quot;
+alert(instance.age);            //29
+</code></pre><p>但是仅仅使用构造函数模式，函数将无法服用，而且在超类型的原型中定义的方法，对子类型而言也是不可见的，结果是所有的类型都只能使用构造函数模式</p>
+<p>组合继承：<br>将原型链和借用构造函数的技术组合，使用原型链实现对原型属性和方法的竭诚，通过急用构造函数来实现对实例属性的继承。</p>
+<pre><code>function SuperType(name){
+    this.name = name;
+    this.colors = [&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;];
+}
+
+SuperType.prototype.sayName = function() {
+    alert(this.name);
+}
+
+function SubType(name, age){
+    //继承属性
+    SupertType.call(this, name);                       ///此处调用
+    this.age = age;
+}
+
+//继承方法
+SubType.prototype = new SuperType();                   ///此处调用
+SubType.prototype.constructor = SubType;
+SubType.prototype.sayAge = function(){
+    alert(this.age);
+};
+
+var instance1 = new SubType(&quot;hothunter&quot;, 23);
+instance1.colors.push(&quot;balck&quot;);
+alert(instance1.colors);            //&quot;red,blue,green,black&quot;
+instance1.sayName();                //&quot;hothunter&quot;
+instance1.sayAge();                 //23
+
+var instance2 = new SubType(&quot;nobody&quot;, 9);
+alert(instance2.colors);            //&quot;red,blue,green,black&quot;
+instance2.sayName();                //&quot;nobody&quot;
+instance2.sayAge();                 //9
+</code></pre><p>组合式继承最大不足是无论什么情况下，都会调用两次超类型构造函数：一次是在创建子类型原型的时候，另一次是在子类型构造函数内部。</p>
+<p>原型式继承：</p>
+<pre><code>function object(o){
+    function F(){}
+    F.prototype = o;
+    return new F();
+}
+</code></pre><p>从本质讲，object()对传入的对象执行了一次浅复制。</p>
+<pre><code>var person = {
+    name : &quot;hothunter&quot;,
+    friends : [&quot;fri1&quot;, &quot;fri2&quot;, &quot;fri3&quot;]
+};
+
+var anotherPerson = object(person);
+anotherPerson.name = &quot;nobody&quot;;
+anotherPerson.friends.push(&quot;fri4&quot;);
+
+var yetAnotherPerson = object(person);
+yetAnotherPerson.name = &quot;naocan&quot;;
+yetAnotherPerson.friends.push(&quot;fri5&quot;);
+
+alert(person.friends);          //&quot;fri1,fri2,fri3,fri4,fri5&quot;
+</code></pre><p>ECMAScript5新增Object.create()规范化原型式继承。接收两个参数：一个用作新对象原型的对象和（可选的）一个味新兑现规定以额外属性的对象，在传入一个参数的情况下，Object.create()与Object()相同。</p>
+<pre><code>var person = {
+    name : &quot;hothunter&quot;,
+    friends : [&quot;fri1&quot;, &quot;fri2&quot;, &quot;fri3&quot;]
+};
+
+var anotherPerson = object.create(person);
+anotherPerson.name = &quot;nobody&quot;;
+anotherPerson.friends.push(&quot;fri4&quot;);
+
+var yetAnotherPerson = object.create(person);
+yetAnotherPerson.name = &quot;naocan&quot;;
+yetAnotherPerson.friends.push(&quot;fri5&quot;);
+
+alert(person.friends);          //&quot;fri1,fri2,fri3,fri4,fri5&quot;
+
+var person = {
+    name : &quot;hothunter&quot;,
+    friends : [&quot;fri1&quot;, &quot;fri2&quot;, &quot;fri3&quot;]
+};
+
+var anotherPerson = Object.create(person, {
+    name : {
+        value : &quot;nobody&quot;
+    }
+    });
+
+alert(anotherPerson.name);          //&quot;nobody&quot;
+</code></pre><p>只想让一个对象与另一个对象保持类似的情况下，原型式继承是完全可以胜任的。但包含应用类型值的属性始终都会共享相应的值，就像使用原型模式一样。</p>
+<p>寄生式继承：</p>
+<p>创建一个仅用于封装继承过程的函数，该函数在内部已某种方式来增强对象，最后再返回对象。</p>
+<pre><code>function createAnother(original){
+    var clone = Object(original);           //通过调用函数创建一个新对象
+    clone.sayHi = function(){               //以某种方式增强这个对象
+        alert(&quot;hi&quot;);
+    };
+    return clone;                           //返回这个对象
+}
+</code></pre><p>可以这样使用：</p>
+<pre><code>var person = {
+    name : &quot;hothunter&quot;,
+    friends : [&quot;fri1&quot;, &quot;fri2&quot;, &quot;fri3&quot;]
+};
+
+var anotherPerson = createAnother(person);
+anotherPerson.sayHi();          //&quot;hi&quot;
+</code></pre><p>在主要考虑对象而不是自定义类型和构造函数的任何情况下，寄生式继承也可以，object()函数不是必须的，任何能够返回新对象的函数都适用于此模式。</p>
+<p>寄生组合式继承：</p>
+<p>通过借用构造函数来继承属性，通过原型链的混成形式来继承方法。可以不必为了制定子类型的原型而调用超类型的构造函数。本质上，就是一哟啊那个寄生式继承来继承超类型的原型，然后再将结果指定给子类型的原型：</p>
+<pre><code>function inheritPrototype(subType, superType){
+    var prototype = Object(superType, subType);     //创建对象
+    prototype.constructor = subType;                //增强对象
+    subType.prototype = prototype;                  //指定对象
+}
+</code></pre><p>第一步创建超类型原型的一个副本。第二部为创建的对象复制给子类型的原型。</p>
+<pre><code>function SuperType(name){
+    this.name = name;
+    this.colors = [&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;];
+}
+
+SuperType.prototype.sayName = function(){
+    alert(this.name);
+}
+
+function SubType(name, age){
+    SuperType.call(this, name);
+    this.age = age;
+}
+
+inheritPrototype(SubType, SuperType);
+
+SubType.prototype.sayAge = function{
+    alert(this.age);
+}
+</code></pre><p>该例子高效率体现在，只调用一次SuperType构造函数，并且因此比秒了在SubType.prototype上面创建不必要的、多余的属性。与此同时，原型链还能保持不变；因此，还能够正常使用instanceof和isPrototypeOf()方法。普遍认为继承组合继承时应用类型最理想的继承方式。</p>
+<hr>
+<h3 id="函数表达式"><a href="#函数表达式" class="headerlink" title="函数表达式"></a>函数表达式</h3><p>定义函数的两种方式：函数声明，函数表达式。<br>函数声明：</p>
+<pre><code>function functionName(arg0, arg1, arg2){
+    //函数体
+}
+</code></pre><p>关于函数的一个重要特征：函数声明提升：执行代码前会先读取函数声明。</p>
+<pre><code>sayHi();
+function sayHi(){
+    alert(&quot;hi&quot;);
+}
+</code></pre><p>函数表达式：</p>
+<pre><code>var functionName = function(arg0, arg1, arg2){
+    //函数体
+};
+</code></pre><p>看起来像常规的变量赋值语句，即常见一个函数并将它复制给变量functionName。这种情况下创建的函数叫匿名函数（达姆拉函数），function关键字后面没有标识符。<br>在使用前必须先赋值。一下代码是错误的：</p>
+<pre><code>sayHi();
+var sayHi = function(){
+    alert(&quot;hi&quot;);
+}
+</code></pre><p>另一个区别：</p>
+<pre><code>//这么做是错误的：
+if(condition==1){
+    function sayHi(){
+        alert(&quot;hi&quot;);
+    }
+}else{
+    function sayHi(){
+        alert(&quot;Yo!&quot;);
+    }
+}
+
+//可以这么做：
+var sayHi;
+
+if(condition){
+    sayHi = function(){
+        alert(&quot;hi&quot;);
+    }
+}else{
+    sayHi = function(){
+        alert(&quot;yo&quot;);
+    }
+}
+</code></pre><p>能够创建函数再赋值给变量，也就能够把函数作为其他函数的值返回</p>
+<pre><code>function createComparisonFunction(propertyName) {
+    return function(object1, object2){
+        var value1 = object1[propertyName];
+        var value2 = object2[propertyName];
+        if (value1 &lt; value2){
+            return -1;
+        } else if (value1 &gt; value2){
+            return 1;
+        } else {
+            return 0;
+        }
+    };
+}
+</code></pre><h4 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h4><p>递归函数是在一个函数通过名字调用自身的情况下构成的</p>
+<pre><code>function factorial(num){
+    if(num &lt;= 1){
+        return 1;
+    } else {
+        return num * factorial(num - 1);
+    }
+}
+</code></pre><p>注意函数名的耦合问题：</p>
+<pre><code>var anotherFactorial = factorial;
+factorial = null;
+alert(anotherFactorial(4));         //出错
+</code></pre><p>使用arguments.callee指向正在执行的函数的指针，实现递归：</p>
+<pre><code>function factorial(num){
+    if (num &lt;= 1){
+        return 1;
+    }else {
+        return num * arguments.callee(num - 1);
+    }
+}
+</code></pre><p>严格模式下无法访问arguments.callee，达到相同目的需要使用命名函数表达式：</p>
+<pre><code>var factorial = (function F(num){
+    if (num &lt;= 1) {
+        return 1;
+    }else {
+        return num * F(num - 1);
+    }
+});
+</code></pre><h4 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h4><p>闭包是指有权访问另一个函数作用域中的变量的函数。创建闭包的常见方式，就是在一个函数内部创建另一个函数。</p>
+<pre><code>function createComparisonFunction(propertyName) {
+    return function(object1, object2){
+        var value1 = object1[propertyName];
+        var value2 = object2[propertyName];
+        if (value1 &lt; value2){
+            return -1;
+        } else if (value1 &gt; value2){
+            return 1;
+        } else {
+            return 0;
+        }
+    };
+}
+</code></pre><p>当某个函数被调用时，会创建一个执行环境（execution context）及相应的作用域链。然后使用argumengts和其他命名参数的值来初始化函数的活动对象（activation object）。但在作用域链中，外部函数的而活动对象始终处在第二位，外部函数的外部函数的活动对象出于第三位，···直至作为作用域链重点的全局执行环境<br>在函数执行过程中，为读取和写入变量的值，就需要在作用域链中查找变量。</p>
+<pre><code>function compare(value1, value2){
+    if (value1 &lt; value2){
+        return -1;
+    }
+    else if (value1 &gt; value2){
+        return 1;
+    }
+    else {
+        return 0;
+    }
+}
+
+var result = compare(5, 10);
+</code></pre><p>后台的每个执行环境都有一个表示变量的对象–变量对象。全局环境的变量对象始终存在，而像compare()函数这样的局部环境的变量对象，则值在函数执行的过程中存在。创建compare()函数时，会创建一个预先包含全局变量对象的作用域链，这个作用域链被保存在内部的[[Scope]]属性中。当调用compare()时，会为函数常见一个执行环境，然后通过赋值函数的[[Scope]]属性中的对象构建起执行环境的作用域链。此后，又有一个活动对象（再次作为变量对象使用）被创建并被推入执行环境作用域链的前端。<br>作用域链本质上是一个纸箱变量对象的指针列表，它只引用但不实际包含变量对象。</p>
+<p>无论什么时候在函数中访问一个变量时，就会从作用域链中搜索具有相应名字的变量。一般来说，当函数执行完毕后，局部活动对象就会被销毁。内存中仅保存全局作用域（全局执行环境的变量对象）。</p>
+<p>闭包与变量：</p>
+<p>作用域链的配置机制的副作用：闭包只能取得包含半数中任何变量的最后一个值。</p>
+<pre><code>funciton createFunctions(){
+    var result = new Array();
+    for (var i=0; i &lt; 10; i++){
+        result[i]  = function(){
+            return i;
+        };
+    }
+    return result
+}
+</code></pre><p>当createFunctions()函数返回后，变量i的值是10，此时每个函数都引用保存变量i的同一个变量对象，所以在每个函数内部i的值都是10。<br>可以通过创建两一个匿名函数强制让闭包的行为符合预期：</p>
+<pre><code>function createFunctions(){
+    var result = new Array();
+    for (var i=0; i &lt; 10; i++){
+        result[i] = function(num){
+            return function(){
+                return num;
+            };
+        }(i);
+    }
+    return result;
+}
+</code></pre><p>关于this：<br>匿名函数的执行环境具有全局性，因此其this对象通常指向window。</p>
+<pre><code>var name = &quot;the window&quot;;
+
+var object = {
+    name : &quot;My Object&quot;,
+    getNameFunc : function(){
+        return function(){
+            return this.name;
+        };
+    }
+};
+alert(object.getNameFunc()());          //&quot;the window&quot;  ---     非严格模式
+</code></pre><p>由于getNameFunc()返回一个函数，因此调用getNameFunc()()就会立即调用它返回的函数。<br>内部函数在搜索这两个变量时，只会搜索到其活动对象为止，因此永远不可能直接访问外部函数中的变量。<br>不过可以这样：</p>
+<pre><code>var name = &quot;the window&quot;;
+
+var object = {
+    name : &quot;My object&quot;,
+    getNameFunc : function(){
+        var that = this;
+        return function(){
+            return that.name;
+        };
+    }
+};
+alert(object.getNameFunc()());          //&quot;My Object&quot;
+</code></pre><p>this的值意外改变的情况：</p>
+<pre><code>var name = &quot;the window&quot;;
+var object = {
+    name : &quot;my object&quot;,
+    getName : function(){
+        return this.name;
+    }
+};
+
+object.getName();           //&quot;my object&quot;
+(object.getName)();         //&quot;my object&quot;
+(object.getName = object.getName)();            //&quot;the window&quot;
+</code></pre><p>内存泄漏：</p>
+<p>如果闭包的作用域链中保存着一个HTML元素，那么就意味着该元素将无法被销毁。</p>
+<pre><code>function assignHandler(){
+    var element = document.geElementById(&quot;someElement&quot;);
+    element.onclick = function(){
+        alert(element.id);
+    };
+}
+</code></pre><p>有匿名函数保存了一个对assignHandler()的活动对象的引用，因此就会导致无法减少element的引用数。只要牛冥函数存在，element的引用数就至少也是1，因此它所占用的内存就永远不会被回收。<br>可以这样：</p>
+<pre><code>function assignHandler(){
+    var element = document.getElementById(&quot;someElement&quot;);
+    var id = element.id;
+    element.onclick = function(){
+        alert(id);
+    };
+    element = null;
+}
+</code></pre>
+  </section>
+
+  <section class="post-comments">
+
+    <!-- 将评论系统（例如Disqus、多说、友言、畅言等）提供的代码片段粘贴在这里 -->
+    
+</section>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <!-- <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span> -->
+    <span class="footer__copyright">呦~❤</span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>
